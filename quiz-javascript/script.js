@@ -2,84 +2,88 @@
 const PERGUNTAS_QUIZ = [
     {     
         id: 1,
-        pergunta: "Teste da primeira pergunta",
-        "primeira alternativa": "primeira alternativa",
-        "segunda alternativa": "segunda alternativa",
-        "alternativa correta": "alternativa correta",
-        "quarta alternativa": "quarta alternativa"
+        pergunta: "Quem é o deus grego do submundo?",
+        alternativa01: "Apolo",
+        alternativa02: "Hades",
+        alternativa03: "Ares",
+        alternativa04: "Dionísio",
+        alternativaCorreta: "Hades"
     },
-
     {     
         id: 2,
-        pergunta: "Teste da segunda pergunta",
-        "primeira alternativa": "primeira alternativa",
-        "segunda alternativa": "segunda alternativa",
-        "alternativa correta": "alternativa correta",
-        "quarta alternativa": "quarta alternativa"
+        pergunta: "Qual deusa é associada à sabedoria e à guerra estratégica?",
+        alternativa01: "Ártemis",
+        alternativa02: "Hera",
+        alternativa03: "Atena",
+        alternativa04: "Afrodite",
+        alternativaCorreta: "Atena"
     },
-
     {     
         id: 3,
-        pergunta: "Teste da terceira pergunta",
-        "primeira alternativa": "primeira alternativa",
-        "segunda alternativa": "segunda alternativa",
-        "alternativa correta": "alternativa correta",
-        "quarta alternativa": "quarta alternativa"
+        pergunta: "Quem foi condenado a empurrar uma pedra eternamente montanha acima?",
+        alternativa01: "Teseu",
+        alternativa02: "Sísifo",
+        alternativa03: "Prometeu",
+        alternativa04: "Odisseu",
+        alternativaCorreta: "Sísifo"
     }
-]
+];
 
-let numeroPerguntas = PERGUNTAS_QUIZ.length
-var perguntasQuiz = []
+let perguntasQuiz = [];
+let perguntaAtual = 0;
 
-var alternativaA = document.getElementById('alternativaA');
-var alternativaB = document.getElementById('alternativaB');
-var alternativaC = document.getElementById('alternativaC');
-var alternativaD = document.getElementById('alternativaD');
+let alternativaA = document.getElementById('alternativaA');
+let alternativaB = document.getElementById('alternativaB');
+let alternativaC = document.getElementById('alternativaC');
+let alternativaD = document.getElementById('alternativaD');
+let alternativas = document.querySelectorAll(".alternativa");
+let elementoPergunta = document.getElementById('pergunta');
+
+
 
 //gera uma ordem aleatoria para a exibicao das perguntas e adiciona a ordem no array 'perguntasQuiz'
-const gerarPerguntas = (numeroPerguntas, perguntasQuiz) => {
-
-    while (perguntasQuiz.length < numeroPerguntas) {
-        var indicePergunta = Math.floor(Math.random() * numeroPerguntas);
-            if (!perguntasQuiz.includes(indicePergunta)){
-                perguntasQuiz.push(indicePergunta);
+const gerarPerguntas = () => {
+    while (perguntasQuiz.length < PERGUNTAS_QUIZ.length) {
+        let indice = Math.floor(Math.random() * PERGUNTAS_QUIZ.length);
+            if (!perguntasQuiz.includes(indice)){
+                perguntasQuiz.push(indice);
             }
         }
-    
-    return perguntasQuiz;
-}
+};
 
-const exibirQuestao = (perguntasQuiz, alternativaA, alternativaB, alternativaC, alternativaD) => {
+const exibirQuestao = () => {
+    let pergunta = PERGUNTAS_QUIZ[perguntasQuiz[perguntaAtual]];
+    elementoPergunta.innerText = pergunta.pergunta;
 
-    let pergunta = document.getElementById('pergunta');
-    pergunta.innerHTML = PERGUNTAS_QUIZ[perguntasQuiz[0]].pergunta;
+    alternativaA.innerText = pergunta.alternativa01;
+    alternativaB.innerText = pergunta.alternativa02;
+    alternativaC.innerText = pergunta.alternativa03;
+    alternativaD.innerText = pergunta.alternativa04;
+};
 
-    alternativaA.innerText = PERGUNTAS_QUIZ[perguntasQuiz[0]]["primeira alternativa"];
-    alternativaB.innerText = PERGUNTAS_QUIZ[perguntasQuiz[0]]["segunda alternativa"];
-    alternativaC.innerText = PERGUNTAS_QUIZ[perguntasQuiz[0]]["alternativa correta"];
-    alternativaD.innerText = PERGUNTAS_QUIZ[perguntasQuiz[0]]["quarta alternativa"];
+const verificaQuestao = (alternativaSelecionada) => {
+    let pergunta = PERGUNTAS_QUIZ[perguntasQuiz[perguntaAtual]];
+    if (alternativaSelecionada === pergunta.alternativaCorreta) {
+        console.log("Acertou!")
+    } else {
+        console.log("Errou!")
+    }
 
-    alternativaA.addEventListener('click', verificaQuestao(alternativaA));
-    alternativaB.addEventListener('click', verificaQuestao(alternativaB));
-    alternativaC.addEventListener('click', verificaQuestao(alternativaC));
-    alternativaD.addEventListener('click', verificaQuestao(alternativaD));
-}
+    perguntaAtual++;
 
-// const verificaQuestao = (alternativa, perguntasQuiz) => {
-//     if (alternativa === PERGUNTAS_QUIZ[perguntasQuiz[0]]["alternativa correta"]) {
-//         console.log("Acertou!")
-//     } else {
-//         console.log("Errou!")
-//     }
-// }
-
-
-
-console.log(gerarPerguntas(numeroPerguntas, perguntasQuiz));
-
-console.log(PERGUNTAS_QUIZ[perguntasQuiz[0]].pergunta);
-
-exibirQuestao(perguntasQuiz, alternativaA, alternativaB, alternativaC, alternativaD)
+    if(perguntaAtual < PERGUNTAS_QUIZ.length) {
+        exibirQuestao();
+    } else {
+        console.log("Quiz finalizado!");
+    }
+};
 
 
+alternativas.forEach(alternativa => {
+    alternativa.addEventListener('click', (event) => {
+        verificaQuestao(event.target.innerText);
+    });
+});
 
+gerarPerguntas();
+exibirQuestao();
