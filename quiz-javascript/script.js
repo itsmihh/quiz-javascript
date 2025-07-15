@@ -26,11 +26,30 @@ const PERGUNTAS_QUIZ = [
         alternativa03: "Prometeu",
         alternativa04: "Odisseu",
         alternativaCorreta: "Sísifo"
+    },
+    {
+        id: 4,
+        pergunta: "Qual herói matou a Medusa?",
+        alternativa01: "Perseu",
+        alternativa02: "Hércules",
+        alternativa03: "Aquiles",
+        alternativa04: "Édipo",
+        alternativaCorreta: "Perseu"
+    },
+    {
+        id: 5,
+        pergunta: "Quem era o mensageiro dos deuses gregos?",
+        alternativa01: "Hermes",
+        alternativa02: "Apolo",
+        alternativa03: "Cronos",
+        alternativa04: "Hefesto",
+        alternativaCorreta: "Hermes"
     }
 ];
 
 let perguntasQuiz = [];
 let perguntaAtual = 0;
+let pontuacao = 0;
 
 let alternativaA = document.getElementById('alternativaA');
 let alternativaB = document.getElementById('alternativaB');
@@ -38,6 +57,8 @@ let alternativaC = document.getElementById('alternativaC');
 let alternativaD = document.getElementById('alternativaD');
 let alternativas = document.querySelectorAll(".alternativa");
 let elementoPergunta = document.getElementById('pergunta');
+
+let pontuacaoFinal = document.getElementById('pontuacaoFinal')
 
 
 
@@ -61,13 +82,16 @@ const exibirQuestao = () => {
     alternativaD.innerText = pergunta.alternativa04;
 };
 
-const verificaQuestao = (alternativaSelecionada) => {
+const verificaQuestao = (alternativaSelecionada, botaoClicado) => {
     let pergunta = PERGUNTAS_QUIZ[perguntasQuiz[perguntaAtual]];
     if (alternativaSelecionada === pergunta.alternativaCorreta) {
-        console.log("Acertou!")
+        console.log("Acertou!");
     } else {
-        console.log("Errou!")
+        console.log("Errou!");
     }
+
+    // botaoClicado.classList.remove("resposta-certa", "resposta-errada")
+
 
     perguntaAtual++;
 
@@ -75,13 +99,15 @@ const verificaQuestao = (alternativaSelecionada) => {
         exibirQuestao();
     } else {
         console.log("Quiz finalizado!");
+        pontuacaoFinal.innerText = "Pontuação Final: " + pontuacao
     }
 };
 
 
 alternativas.forEach(alternativa => {
     alternativa.addEventListener('click', (event) => {
-        verificaQuestao(event.target.innerText);
+        let botaoClicado = event.target.classList.add("element");
+        verificaQuestao(event.target.innerText, botaoClicado);
     });
 });
 
