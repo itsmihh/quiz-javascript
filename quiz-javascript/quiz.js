@@ -52,6 +52,7 @@ const PERGUNTAS_QUIZ = [
 
 const iniciarQuiz = document.querySelector('.iniciar-quiz');
 const quiz = document.querySelector('.quiz');
+const gabarito = document.querySelector('#gabarito');
 
 const perguntasQuiz = [];
 let elementoPergunta = document.querySelector('#pergunta');
@@ -65,6 +66,9 @@ let alternativas = document.querySelectorAll('.alternativa');
 
 let perguntaAtual = 0;
 let pontuacao = 0;
+
+let respostasQuiz = [];
+let respostasUsuario = [];
 
 
 iniciarQuiz.addEventListener('click', function() {
@@ -87,6 +91,8 @@ const indicesAleatorios = () => {
     }
 };
 
+
+
 const exibirQuestao = () => {
     proximaQuestao.disabled = true;
     let pergunta = PERGUNTAS_QUIZ[perguntasQuiz[perguntaAtual]];
@@ -97,8 +103,10 @@ const exibirQuestao = () => {
     alternativaC.innerText = pergunta.alternativa03;
     alternativaD.innerText = pergunta.alternativa04;
 
+    if(perguntaAtual === perguntasQuiz.length-1) {
+        proximaQuestao.innerText = "Finalizar";
+    }
 }
-
 
 alternativas.forEach(alternativa => {
     alternativa.addEventListener('click', () => {
@@ -122,6 +130,9 @@ const verificaAlternativa = (alternativa) => {
     } else {
         console.log("Resposta Errada!")
     }
+
+    respostasQuiz.push(resposta);
+    respostasUsuario.push(alternativa);
 }
 
 const proximaQuestao = document.querySelector('#proxima-questao');
@@ -131,7 +142,10 @@ proximaQuestao.addEventListener('click', function() {
             perguntaAtual ++;
             console.log(perguntaAtual);
             exibirQuestao();
-        } else {
+        } 
+        
+        else {
+            gabaritoQuiz();
             console.log("Fim do quiz!");
         }
 
@@ -145,8 +159,25 @@ const habilitarBotao = () => {
     proximaQuestao.disabled = false;
 }
 
+const gabaritoQuiz = () => {
+    quiz.style.display = 'none';
+    gabarito.style.display = 'block';
+
+    gabarito.append("Pontuação final: " + pontuacao)
+
+    respostasQuiz.forEach(resposta => {
+        gabarito.append(resposta)
+    })
+
+    respostasUsuario.forEach(resposta => {
+        gabarito.append(resposta)
+    })
+
+}
+
 console.log(perguntasQuiz);
-console.log(perguntasQuiz.length);
 console.log("Pontuação final:" + pontuacao)
+// console.log(respostasQuiz)
+// console.log(respostasUsuario)
 
 
