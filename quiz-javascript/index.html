@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
-    <style>
-        .resposta-certa {
-            background-color: green;
-        }
-        .resposta-errada {
-            background-color: red;
-        }
-    </style>
-    <!-- <script src="script.js"></script> -->
 
-    <p id="pergunta">Aqui sera exibida a pergunta do quiz</p>
-    <button id="alternativaA" class="alternativa">A</button>
-    <button id="alternativaB" class="alternativa">B</button>
-    <button id="alternativaC" class="alternativa">C</button>
-    <button id="alternativaD" class="alternativa">D</button>
+    <div class="iniciar-quiz">
+        <p>Você está pronto para iniciar o quiz sobre Mitologia Grega?</p>
+        <button>SIM</button>
+    </div>
 
-    <p id="pontuacaoFinal"></p>
-    <script src="script.js"></script>
+    <div class="quiz">
+         <p id="pergunta">Aqui sera exibida a pergunta do quiz</p>
+        <button id="alternativaA" class="alternativa">A</button>
+        <button id="alternativaB" class="alternativa">B</button>
+        <button id="alternativaC" class="alternativa">C</button>
+        <button id="alternativaD" class="alternativa">D</button>
+        <button disabled id="proxima-questao">Próxima</button>
+    </div>
+   
+
+    <!-- <p id="pontuacaoFinal"></p> -->
+    <script src="quiz.js"></script>
 
 </body>
 </html>
