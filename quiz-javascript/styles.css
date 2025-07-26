@@ -1,3 +1,13 @@
+body {
+    background-color: #C43670;
+}
+
+
+.iniciar-quiz {
+    background-color: #FEF1EB;
+}
+
+
 .alternativa-selecionada {
     color: red;
 }
