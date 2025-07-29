@@ -19,9 +19,6 @@ Criei um quiz sobre **Mitologia Grega** com 10 perguntas aleatórias, onde o usu
 - Frases personalizadas de acordo com o desempenho
 - Botão de "Recomeçar" para tentar novamente
 
-## Prévia do Projeto
-![Demonstração do projeto](gif-projeto.gif)
-
 ## Tecnologias Utilizadas
 - HTML5
 - CSS3
@@ -32,4 +29,4 @@ Criei um quiz sobre **Mitologia Grega** com 10 perguntas aleatórias, onde o usu
 - [JavaScript DOM Manipulation – Full Course for Beginners](https://youtu.be/5fb2aPlgoys)
 
 
-Feito por Milena :purple_heart: 💜
+Feito por Milena :purple_heart:
