@@ -1,22 +1,215 @@
-body {
-    background-color: #C43670;
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lexend", sans-serif;
 }
 
+
+body, html {
+    height: 100%;
+    background-color: #93A267;
+}
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 .iniciar-quiz {
-    background-color: #FEF1EB;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    height: 50%;
+    padding: 0 5%;
+    background-color: #FBFBFB;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.iniciar-quiz h3 {
+    margin-bottom: 10%;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.iniciar-quiz p {
+    margin-bottom: 10%;
+    text-align: center;
+    font-weight: 400;
+}
+
+.iniciar-quiz button {
+    margin: 0 auto;
+    width: 40%;
+    height: 50px;
+    font-size: 1.3em;
+
+    color: #FBFBFB;
+    background-color: #485935;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    transition: 0.5s;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#botao-comecar:active {
+    transform: translateY(2px);
+}
 
 .alternativa-selecionada {
-    color: red;
+    background-color: #485935 !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .quiz {
     display: none;
+
+    background-color: #FBFBFB;
+    width: 50%;
+    height: 55%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
-#gabarito {
+.quiz #numero-questao {
+    margin: 30px 0 30px 30px;
+    font-size: 1.7em;
+
+    color: #FBFBFB;
+    background-color: #485935;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    align-content: center;
+    border-radius: 50%;
+}
+
+.quiz .secao-pergunta {
+    font-size: 1.2em;
+    margin: 20px 30px 10px 30px;
+    text-align: center;
+}
+
+.quiz .secao-alternativas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px 30px;
+    gap: 20px;
+}
+
+.quiz .alternativa {
+    font-size: 1em;
+    width: 40%;
+    height: 40px;
+
+    background-color: #93A267;
+    color: #FBFBFB;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz #proxima-questao {
+    margin-left: 75%;
+    font-size: 1em;
+    width: 20%;
+    height: 40px;
+
+    background-color: #485935;
+    color: #FBFBFB;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#proxima-questao:disabled{
+    background-color: #CADBB7;
+    color: #FBFBFB;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gabarito {
     display: none;
+    padding: 0 5%;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 50%;
+    height: 70%;
+    background-color: #FBFBFB;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gabarito h3 {
+    text-align: center;
+    margin: 50px 0 20px 0;
+    font-size: 1.5em;
+}
+
+#mensagem {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.respostas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+    column-gap: 50px;
+    margin-bottom: 25px
+}
+
+.resposta-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.bolinha {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #FBFBFB;
+    text-align: center;
+    align-content: center;
+}
+
+.correta {
+    background-color: #485935;
+}
+
+.errada {
+    background-color: #93A267;
+}
+
+.gabarito button {
+    margin-left: 75%;
+    font-size: 1em;
+    width: 30%;
+    height: 40px;
+
+    background-color: #485935;
+    color: #FBFBFB;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
 }
